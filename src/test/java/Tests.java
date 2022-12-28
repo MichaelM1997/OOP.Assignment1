@@ -24,6 +24,8 @@ public class Tests {
 
         logger.info(() -> JvmUtilities.jvmInfo());
     }
+    //Registering a ConcreteMember object with the GroupAdmin and checking that it has been
+    // added to the list of members
     @Test
     public void testRegister() {
         // Create a GroupAdmin object and a Member object
@@ -39,6 +41,7 @@ public class Tests {
         // Check that the Member has received the initial string from the GroupAdmin
         assertEquals("Initial string", member.toString());
     }
+    //Registering a ConcreteMember object with the GroupAdmin twice and checking that it is only added to the list of members once
     @Test
     void testDoubleRegister() {
         GroupAdmin groupAdmin = new GroupAdmin("Initial string");
@@ -52,6 +55,7 @@ public class Tests {
         assertEquals(1, groupAdmin.getMembers().size());
         assertEquals("Initial string", member.getUsbSC().toString());
     }
+    //Unregistering a ConcreteMember object from the GroupAdmin and checking that it has been removed from the list of members
     @Test
     public void testUnregister() {
         // Create a GroupAdmin object and a Member object
@@ -67,6 +71,8 @@ public class Tests {
         // Check that the Member has been removed from the list of members
         assertFalse(groupAdmin.getMembers().contains(member));
     }
+    //Inserting a string into the GroupAdmin's UndoableStringBuilder and checking that the
+    // ConcreteMember's UndoableStringBuilder is updated with the inserted string
     @Test
     public void testInsert() throws Exception {
         // Create a GroupAdmin object and a Member object
@@ -82,6 +88,8 @@ public class Tests {
         // Check that the Member's string has been updated with the inserted string
         assertEquals("Inserted stringInitial string", member.toString());
     }
+    //Appending a string to the GroupAdmin's UndoableStringBuilder and checking that the
+    // ConcreteMember's UndoableStringBuilder is updated with the appended string
     @Test
     public void testAppend() {
         // Create a GroupAdmin object and a Member object
@@ -97,6 +105,8 @@ public class Tests {
         // Check that the Member's string has been updated with the appended string
         assertEquals("Initial stringAppended string", member.toString());
     }
+    //Deleting a string from the GroupAdmin's UndoableStringBuilder and checking that the
+    // ConcreteMember's UndoableStringBuilder is updated with the deleted string
     @Test
     public void testDelete() throws Exception {
         // Create a GroupAdmin object and a Member object
@@ -112,7 +122,18 @@ public class Tests {
         // Check that the Member's string has been updated with the deleted portion removed
         assertEquals("Initial", member.toString());
     }
-
+    /*
+    This is a JUnit test that measures the memory usage of a GroupAdmin object and its associated Member objects.
+    The test begins by initializing a GroupAdmin object and measuring the memory usage of the GroupAdmin object before any
+    Member objects are created. Then, it creates a large number of ConcreteMember objects and registers them with the
+    GroupAdmin object. After all the Member objects have been created, the test measures the memory usage of the GroupAdmin
+    object again and calculates the difference in memory usage between the two measurements.
+    The test then uses the JvmUtilities class to get the object footprint of the GroupAdmin object and the total size of
+    the GroupAdmin object. It also gets information about the Java Virtual Machine (JVM) using the JvmUtilities.jvmInfo() method.
+    Finally, the test verifies that the object footprint of the GroupAdmin object contains an ArrayList and that the total size
+    of the GroupAdmin object is greater than zero. It also asserts that the difference in memory usage between the two measurements
+    is below a certain threshold. The test logs the object footprint, total size, and JVM info for review.
+     */
     @Test
     public void testMemoryUsage() {
         // Initialize the GroupAdmin object
@@ -150,6 +171,7 @@ public class Tests {
         logger.info(() -> "\nTotal size: " + totalSize);
         logger.info(() -> "\nJVM info: " + jvmInfo);
     }
+    //Updating a string and checking that the ConcreteMember's UndoableStringBuilder is updated
     @Test
     public void testUpdate() {
         // Create a concrete member
