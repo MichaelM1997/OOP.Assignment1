@@ -45,7 +45,6 @@ public class GroupAdmin implements Sender{
         else{
             System.err.println("Member is already registered");
         }
-
     }
 
     @Override

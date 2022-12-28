@@ -133,8 +133,22 @@ public class Tests {
         // Calculate the difference in memory usage
         long difference = after - before;
 
+        String footprint = JvmUtilities.objectFootprint(groupAdmin);
+        long totalSize = GraphLayout.parseInstance(groupAdmin).totalSize();
+        String jvmInfo = JvmUtilities.jvmInfo();
+
+        // Verify that there is no unexpected object footprint
+        assertTrue(footprint.contains("java.util.ArrayList"), "Unexpected object footprint: " + footprint);
+        // The size that given is make sense
+        assertTrue(totalSize > 0, "Unexpected total size: " + totalSize);
+
         // Assert that the difference is below a certain threshold
         assertTrue(difference < 30000);
+
+        // Log results for review
+        logger.info(() -> "\nObject footprint: " + footprint);
+        logger.info(() -> "\nTotal size: " + totalSize);
+        logger.info(() -> "\nJVM info: " + jvmInfo);
     }
     @Test
     public void testUpdate() {
