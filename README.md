@@ -4,7 +4,7 @@ This project implements the Observer pattern in Java, using the ConcreteMember a
 
 ## calss 
 
-* #GroupAdmin
+* GroupAdmin
 This is a Java class that implements the Sender interface and represents a group administrator who is responsible for
 maintaining a list of members and a message that is shared with all the members of the group.
 The group administrator maintains an instance of the UndoableStringBuilder class, which represents a string that
@@ -15,7 +15,7 @@ the insert, append, and delete methods. When a modification is made to the messa
 notifyObserver method, which in turn calls the update method on each of the registered members, passing the modified message
 as an argument. This allows the members to be notified of the change and update their copy of the message accordingly.
 
-* #ConcreteMember
+* ConcreteMember
 The ConcreteMember class is an implementation of the Member interface. It has three constructors: one that takes
  an UndoableStringBuilder object as an argument, one that takes a Sender object as an argument, and one that takes both a
  Sender and an UndoableStringBuilder object as arguments.
